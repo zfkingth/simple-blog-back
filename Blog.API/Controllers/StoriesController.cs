@@ -137,7 +137,7 @@ namespace Blog.API.Controllers
             var ownerId = HttpContext.User.Identity.Name;
             if (!storyRepository.IsOwner(id, ownerId)) return Forbid("You are not the owner of this story");
 
-            var newStory = storyRepository.GetSingle(s => s.Id == ownerId);
+            var newStory = storyRepository.GetSingle(s => s.Id == id);
             newStory.Draft = false;
             newStory.PublishTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
 
